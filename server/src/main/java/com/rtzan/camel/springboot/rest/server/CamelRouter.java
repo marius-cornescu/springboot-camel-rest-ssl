@@ -1,6 +1,7 @@
-package com.rtzan.camel.springboot.rest;
+package com.rtzan.camel.springboot.rest.server;
 
-import com.rtzan.camel.springboot.model.UserEntity;
+
+import com.rtzan.camel.springboot.server.model.UserEntity;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.rest.RestBindingMode;
@@ -11,7 +12,7 @@ import static org.apache.camel.model.rest.RestParamType.path;
 
 /**
  * A simple Camel REST DSL route with Swagger API documentation.
- * 
+ *
  */
 @Component
 public class CamelRouter extends RouteBuilder {
@@ -28,7 +29,7 @@ public class CamelRouter extends RouteBuilder {
                 .apiProperty("api.title", "User API").apiProperty("api.version", "1.0.0")
                 .apiProperty("cors", "true");
 
-        
+
         rest("/users").description("User REST service")
             .consumes("application/json")
             .produces("application/json")
@@ -36,7 +37,7 @@ public class CamelRouter extends RouteBuilder {
             .get().description("Find all users").outType(UserEntity[].class)
                 .responseMessage().code(200).message("All users successfully returned").endResponseMessage()
                 .to("bean:userService?method=findUsers")
-        
+
             .get("/{id}").description("Find user by ID")
                 .outType(UserEntity.class)
                 .param().name("id").type(path).description("The ID of the user").dataType("integer").endParam()
@@ -44,7 +45,7 @@ public class CamelRouter extends RouteBuilder {
                 .to("bean:userService?method=findUser(${header.id})")
 
             .put("/{id}").description("Update a user").type(UserEntity.class)
-                .param().name("id").type(path).description("The ID of the user to update").dataType("integer").endParam()    
+                .param().name("id").type(path).description("The ID of the user to update").dataType("integer").endParam()
                 .param().name("body").type(body).description("The user to update").endParam()
                 .responseMessage().code(204).message("User successfully updated").endResponseMessage()
                 .to("bean:userService?method=updateUser");

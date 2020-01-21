@@ -1,4 +1,4 @@
-package com.rtzan.camel.springboot.model;
+package com.rtzan.camel.springboot.server.model;
 
 import java.util.Collection;
 
