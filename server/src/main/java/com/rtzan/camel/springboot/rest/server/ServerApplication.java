@@ -6,8 +6,8 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(value = {
+        "com.rtzan.camel.springboot.rest.server",
         "com.rtzan.camel.springboot.server.model",
-        "com.rtzan.camel.springboot.rest.server"
 })
 public class ServerApplication {
 

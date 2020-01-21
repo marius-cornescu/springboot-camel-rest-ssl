@@ -18,6 +18,8 @@ import static org.apache.camel.model.rest.RestParamType.path;
 @Component
 public class ServerCamelRouter extends RouteBuilder {
 
+    @Value("${server.schema:http}")
+    private String serverSchema;
     @Value("${server.address:0.0.0.0}")
     private String serverAddress;
     @Value("${server.port:8084}")
@@ -29,9 +31,9 @@ public class ServerCamelRouter extends RouteBuilder {
         // @formatter:off
         restConfiguration()
             .component("netty-http")
+            .scheme(serverSchema)
             .host(serverAddress)
             .port(serverPort)
-            .componentProperty("protocol", "https")
             .bindingMode(RestBindingMode.json)
             .dataFormatProperty("prettyPrint", "true")
             .apiContextPath("/api-doc")
