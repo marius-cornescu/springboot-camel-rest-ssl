@@ -13,7 +13,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Spring Boot>Camel>REST>Server</name>
+    <name>SpringBoot>Camel>REST>Server</name>
     <description>Spring Boot > Camel > Jetty Server with SSL</description>
 
 </project>
