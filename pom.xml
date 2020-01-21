@@ -8,17 +8,22 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>SpringBoot>Camel>REST</name>
+    <name>SpringBoot-Camel-REST</name>
     <description>Spring Boot > Camel > Jetty Server and Client with SSL</description>
 
     <properties>
-        <version.spring-boot>1.5.9.RELEASE</version.spring-boot>
-        <version.camel>2.20.0</version.camel>
+        <version.spring-boot>2.1.9.RELEASE</version.spring-boot>
+        <version.camel>3.0.0-RC3</version.camel>
+
         <version.cdi>2.0</version.cdi>
         <version.weld>3.0.0.Final</version.weld>
+
         <version.arquillian.core>1.1.13.Final</version.arquillian.core>
         <version.arquillian.weld>2.0.0.Beta4</version.arquillian.weld>
+
         <version.junit>4.12</version.junit>
+
+        <version.slf4j>1.7.30</version.slf4j>
 
         <!-- enforce to require using at least this maven version -->
         <maven-enforcer-require-maven-version>3.2.5</maven-enforcer-require-maven-version>
@@ -42,13 +47,6 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${version.spring-boot}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
                 <groupId>org.apache.camel</groupId>
                 <artifactId>camel-spring-boot-dependencies</artifactId>
                 <version>${version.camel}</version>
@@ -59,14 +57,18 @@
     </dependencyManagement>
 
     <dependencies>
-        <!-- Spring Boot -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <version>${version.spring-boot}</version>
-        </dependency>
-
         <!-- Camel -->
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-spring-boot-starter</artifactId>
+            <version>${version.camel}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-core</artifactId>
@@ -74,22 +76,7 @@
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
-            <artifactId>camel-servlet</artifactId>
-            <version>${version.camel}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-spring-boot-starter</artifactId>
-            <version>${version.camel}</version>
-        </dependency>
-        <!--<dependency>-->
-            <!--<groupId>org.apache.camel</groupId>-->
-            <!--<artifactId>camel-swagger-java-starter</artifactId>-->
-            <!--<version>${version.camel}</version>-->
-        <!--</dependency>-->
-        <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-servlet-starter</artifactId>
+            <artifactId>camel-swagger-java</artifactId>
             <version>${version.camel}</version>
         </dependency>
         <dependency>
@@ -98,13 +85,18 @@
             <version>${version.camel}</version>
         </dependency>
 
-        <!-- Test -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <version>${version.spring-boot}</version>
-            <scope>test</scope>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${version.slf4j}</version>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${version.slf4j}</version>
+        </dependency>
+
+        <!-- Test -->
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-test</artifactId>

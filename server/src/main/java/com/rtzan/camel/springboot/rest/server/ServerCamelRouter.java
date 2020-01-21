@@ -5,6 +5,7 @@ import com.rtzan.camel.springboot.server.model.UserEntity;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.rest.RestBindingMode;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import static org.apache.camel.model.rest.RestParamType.body;
@@ -15,14 +16,22 @@ import static org.apache.camel.model.rest.RestParamType.path;
  *
  */
 @Component
-public class CamelRouter extends RouteBuilder {
+public class ServerCamelRouter extends RouteBuilder {
+
+    @Value("${server.address:0.0.0.0}")
+    private String serverAddress;
+    @Value("${server.port:8084}")
+    private int serverPort;
 
     @Override
     public void configure() {
 
         // @formatter:off
         restConfiguration()
-            .component("servlet")
+            .component("netty-http")
+            .host(serverAddress)
+            .port(serverPort)
+            .componentProperty("protocol", "https")
             .bindingMode(RestBindingMode.json)
             .dataFormatProperty("prettyPrint", "true")
             .apiContextPath("/api-doc")

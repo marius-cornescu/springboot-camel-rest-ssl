@@ -13,7 +13,15 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>SpringBoot>Camel>REST>Server</name>
+    <name>SpringBoot-Camel-REST-Server</name>
     <description>Spring Boot > Camel > Jetty Server with SSL</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-netty-http</artifactId>
+            <version>${version.camel}</version>
+        </dependency>
+    </dependencies>
 
 </project>
