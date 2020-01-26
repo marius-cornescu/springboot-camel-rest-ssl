@@ -10,8 +10,20 @@ http://0.0.0.0:8080/api-doc
 http://0.0.0.0:8080/users
 
 
+### JETTY SERVER
 
+java -jar target/springboot-camel-rest-server-1.0-SNAPSHOT.jar -Dspring.profiles.active=jetty-server --spring.config.location=classpath:/jetty-application.properties
 
+### NETTY SERVER
+
+java -jar target/springboot-camel-rest-server-1.0-SNAPSHOT.jar -Dspring.profiles.active=netty-server --spring.config.location=classpath:/netty-application.properties
+
+jetty-application.properties
+
+-Dspring.profiles.active=netty-server
+-Dspring.profiles.active=jetty-server
+
+--spring.config.location=classpath:/another-location.properties
 
 ## References
 

@@ -76,6 +76,11 @@
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
+            <artifactId>camel-api</artifactId>
+            <version>${version.camel}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
             <artifactId>camel-swagger-java</artifactId>
             <version>${version.camel}</version>
         </dependency>
