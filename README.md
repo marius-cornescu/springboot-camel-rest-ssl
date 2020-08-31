@@ -2,28 +2,22 @@
 A restfull jetty server and client with mutual ssl authentication
 
 ## Server Run command
-`springb-camel-rest-ssl/server$ java -jar target/springb-camel-rest-server-1.0-SNAPSHOT.jar`
+`>$ java -jar target/springb-camel-rest-server-1.0-SNAPSHOT.jar`
 
 ## Urls
 http://0.0.0.0:8080/api-doc
-
 http://0.0.0.0:8080/users
 
 
 ### JETTY SERVER
 
-java -jar target/springb-camel-rest-server-1.0-SNAPSHOT.jar -Dspring.profiles.active=jetty-server --spring.config.location=classpath:/jetty-application.properties
+java -jar target/springb-camel-rest-server-1.0-SNAPSHOT.jar -Dspring.profiles.active=jetty-server --spring.config.location=./src/main/resources/jetty-application.properties
+
+
 
 ### NETTY SERVER
 
-java -jar target/springb-camel-rest-server-1.0-SNAPSHOT.jar -Dspring.profiles.active=netty-server --spring.config.location=classpath:/netty-application.properties
-
-jetty-application.properties
-
--Dspring.profiles.active=netty-server
--Dspring.profiles.active=jetty-server
-
---spring.config.location=classpath:/another-location.properties
+java -jar target/springb-camel-rest-server-1.0-SNAPSHOT.jar -Dspring.profiles.active=netty-server --spring.config.location=./src/main/resources/netty-application.properties
 
 
 
@@ -63,7 +57,7 @@ jetty-application.properties
 
 
 
-
+//================================================================================================================
 ## References
 
 1) https://www.codeproject.com/articles/326574/an-introduction-to-mutual-ssl-authentication
