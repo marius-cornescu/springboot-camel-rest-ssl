@@ -13,7 +13,7 @@
     <artifactId>springb-camel-rest-common</artifactId>
     <packaging>jar</packaging>
 
-    <name>k8s-camel-spring-common</name>
+    <name>springb-camel-rest-common</name>
     <description></description>
 
     <dependencies>

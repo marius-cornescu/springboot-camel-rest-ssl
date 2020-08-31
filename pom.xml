@@ -49,14 +49,14 @@
 
     <modules>
     	<module>common</module>
-        <module>server</module>
-        <module>client</module>
+        <module>sbcr-server</module>
+        <module>sbcr-client</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.rtzan.camel.k8s</groupId>
+                <groupId>com.rtzan.camel.sbcr</groupId>
                 <artifactId>springb-camel-rest-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
