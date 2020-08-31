@@ -1,4 +1,4 @@
-package com.rtzan.camel.sbcr.server.model;
+package com.rtzan.camel.sbcr.rest.common.tls;
 
 import org.apache.camel.support.jsse.SSLContextParameters;
 import org.apache.camel.support.jsse.SSLContextServerParameters;

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-import static com.rtzan.camel.sbcr.server.model.SslParameters.SSL_CONTEXT_PARAMETERS;
+import static com.rtzan.camel.sbcr.rest.common.tls.SslParameters.SSL_CONTEXT_PARAMETERS;
 
 @Component
 @Profile({"!test", "jetty-server"})

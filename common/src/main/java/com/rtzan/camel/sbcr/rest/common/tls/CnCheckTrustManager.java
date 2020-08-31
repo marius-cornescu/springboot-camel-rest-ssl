@@ -1,4 +1,4 @@
-package com.rtzan.camel.sbcr.server.model;
+package com.rtzan.camel.sbcr.rest.common.tls;
 
 import javax.naming.ldap.LdapName;
 import javax.net.ssl.TrustManager;

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * 
  */
 @Component
-public class CamelRouter extends RouteBuilder {
+public class ClientCamelRouteBuilder extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {

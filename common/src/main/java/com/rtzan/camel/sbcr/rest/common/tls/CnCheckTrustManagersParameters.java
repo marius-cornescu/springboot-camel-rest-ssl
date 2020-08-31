@@ -1,4 +1,4 @@
-package com.rtzan.camel.sbcr.server.model;
+package com.rtzan.camel.sbcr.rest.common.tls;
 
 import javax.net.ssl.TrustManager;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import org.apache.camel.support.jsse.TrustManagersParameters;
 
 public class CnCheckTrustManagersParameters extends TrustManagersParameters {
 
-    private String acceptedCNsString;
+    private final String acceptedCNsString;
 
     public CnCheckTrustManagersParameters(String acceptedCNsString) {
         this.acceptedCNsString = acceptedCNsString;
