@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+
+###############################################################################
+kind: Deployment
+metadata:
+  name: my-k8s-camel-spring
+spec:
+  selector:
+    matchLabels:
+      app: my-k8s-camel-spring
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: my-k8s-camel-spring
+    spec:
+      containers:
+      - name: my-k8s-camel-spring
+        image: artizan.org/spring-camel:1.0
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: "128Mi" #128 MB
+            cpu: "100m" #100 millicpu (.1 cpu or 10% of the cpu)
+
+
+###############################################################################
+###############################################################################
