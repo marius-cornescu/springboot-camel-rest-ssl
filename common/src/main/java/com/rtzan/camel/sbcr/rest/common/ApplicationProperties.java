@@ -1,4 +1,4 @@
-package com.rtzan.camel.k8s.common;
+package com.rtzan.camel.sbcr.rest.common;
 
 
 public abstract class ApplicationProperties {
