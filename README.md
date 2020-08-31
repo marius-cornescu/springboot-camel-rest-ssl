@@ -2,7 +2,7 @@
 A restfull jetty server and client with mutual ssl authentication
 
 ## Server Run command
-`springboot-camel-rest-ssl/server$ java -jar target/springboot-camel-rest-server-1.0-SNAPSHOT.jar`
+`springb-camel-rest-ssl/server$ java -jar target/springb-camel-rest-server-1.0-SNAPSHOT.jar`
 
 ## Urls
 http://0.0.0.0:8080/api-doc
@@ -12,11 +12,11 @@ http://0.0.0.0:8080/users
 
 ### JETTY SERVER
 
-java -jar target/springboot-camel-rest-server-1.0-SNAPSHOT.jar -Dspring.profiles.active=jetty-server --spring.config.location=classpath:/jetty-application.properties
+java -jar target/springb-camel-rest-server-1.0-SNAPSHOT.jar -Dspring.profiles.active=jetty-server --spring.config.location=classpath:/jetty-application.properties
 
 ### NETTY SERVER
 
-java -jar target/springboot-camel-rest-server-1.0-SNAPSHOT.jar -Dspring.profiles.active=netty-server --spring.config.location=classpath:/netty-application.properties
+java -jar target/springb-camel-rest-server-1.0-SNAPSHOT.jar -Dspring.profiles.active=netty-server --spring.config.location=classpath:/netty-application.properties
 
 jetty-application.properties
 
@@ -24,6 +24,45 @@ jetty-application.properties
 -Dspring.profiles.active=jetty-server
 
 --spring.config.location=classpath:/another-location.properties
+
+
+
+## Build docker image
+`docker build --rm -t artizan.org/spring-camel:1.0 .`
+
+`docker build --rm --build-arg http_proxy=$http_proxy -t artizan.org/spring-camel:1.0 .`
+
+`docker run -it artizan.org/spring-camel:1.0 sh`
+
+## Deploy in k8s cluster
+1. Run `kubectl create -f k8s-camel-spring.deployment.yml`
+2. Run `kubectl get pods` to see the pod.
+3. Run `k exec [k8s-camel-spring] -it sh` to shell into the container. Type `exit` to exit the shell.
+
+
+
+
+
+
+
+
+
+
+
+
+
+[https://alpine.pkgs.org/3.12/alpine-community-aarch64/openjdk11-jre-headless-11.0.7_p10-r1.apk.html]
+
+
+
+
+
+
+
+
+
+
+
 
 ## References
 
