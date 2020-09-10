@@ -6,6 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan(value = {
+        "com.rtzan.camel.sbcr.rest.common.tls",
         "com.rtzan.camel.sbcr.rest.server",
         "com.rtzan.camel.sbcr.server.model",
 })

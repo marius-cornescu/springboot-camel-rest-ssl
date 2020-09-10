@@ -20,11 +20,12 @@ public class SslManagersParameters {
     private final TrustManagersParameters trustManagersParameters;
 
     @Autowired
-    public SslManagersParameters(@Value("${ssl.keystore.location}") String keystoreLocation,
-                                 @Value("${ssl.keystore.password}") String keystorePassword,
-                                 @Value("${ssl.truststore.location}") String truststoreLocation,
-                                 @Value("${ssl.truststore.password}") String truststorePassword,
-                                 @Value("${ssl.accepted.cns:}") String acceptedCNsString
+    public SslManagersParameters(
+            @Value("${ssl.keystore.location}") String keystoreLocation,
+            @Value("${ssl.keystore.password}") String keystorePassword,
+            @Value("${ssl.truststore.location}") String truststoreLocation,
+            @Value("${ssl.truststore.password}") String truststorePassword,
+            @Value("${ssl.accepted.cns:}") String acceptedCNsString
     ) {
         this.keyManagersParameters = createKeyManagersParameters(keystoreLocation, keystorePassword);
         this.trustManagersParameters = createTrustManagersParameters(truststoreLocation, truststorePassword, acceptedCNsString);

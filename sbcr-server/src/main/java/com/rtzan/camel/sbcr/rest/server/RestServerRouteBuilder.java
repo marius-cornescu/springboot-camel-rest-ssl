@@ -17,7 +17,6 @@ public class RestServerRouteBuilder extends RouteBuilder {
     public static final String ROUTE_ID_USERS_GET_BY_ID = APP_NAME + ".users.getById";
     public static final String ROUTE_ID_USERS_UPDATE_BY_ID = APP_NAME + ".users.putById";
 
-
     @Override
     public void configure() throws Exception {
 
