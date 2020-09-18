@@ -13,7 +13,7 @@ http://0.0.0.0:8080/users
 
 java -jar target/springb-camel-rest-server-1.0-SNAPSHOT.jar -Dspring.profiles.active=jetty-server --spring.config.location=./src/main/resources/jetty-application.properties
 
-
+java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5005 -jar target/springb-camel-rest-server-1.0-SNAPSHOT.jar -Dspring.profiles.active=jetty-server --spring.config.location=./src/main/resources/jetty-application.properties
 
 ### NETTY SERVER
 

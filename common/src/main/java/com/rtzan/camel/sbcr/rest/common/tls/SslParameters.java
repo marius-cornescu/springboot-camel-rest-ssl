@@ -8,9 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+@Lazy
 @Component
 public class SslParameters {
 
@@ -29,6 +31,7 @@ public class SslParameters {
         this.sslContextParameters = createSSLContextParameters(clientAuthentication, sslManagersParameters, secureSocketProtocol);
     }
 
+    @Lazy
     @Bean(name = SSL_CONTEXT_PARAMETERS)
     public SSLContextParameters getSSLContextParameters() {
         return this.sslContextParameters;

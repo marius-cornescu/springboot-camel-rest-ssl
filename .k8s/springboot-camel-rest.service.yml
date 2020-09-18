@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+
+###############################################################################
+kind: Service
+metadata:
+  name: my-k8s-camel-spring_load-balancer
+spec:
+  type: LoadBalancer
+  selector:
+    matchLabels:
+      app: my-k8s-camel-spring
+  ports:
+  - name: "8080"
+    port: 8080
+    targetPort: 80
+
+
+###############################################################################
+###############################################################################

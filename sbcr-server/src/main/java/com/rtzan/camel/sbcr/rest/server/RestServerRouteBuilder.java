@@ -1,5 +1,6 @@
 package com.rtzan.camel.sbcr.rest.server;
 
+import com.rtzan.camel.sbcr.server.model.ServiceStatus;
 import com.rtzan.camel.sbcr.server.model.UserEntity;
 
 import org.apache.camel.builder.RouteBuilder;
