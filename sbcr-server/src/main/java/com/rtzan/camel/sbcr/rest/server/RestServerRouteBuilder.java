@@ -22,7 +22,7 @@ public class RestServerRouteBuilder extends RouteBuilder {
     public void configure() throws Exception {
 
         // @formatter:off
-        rest("/users").description("User REST service")
+        rest("/api/v1" + "/users").description("User REST service")
                 .consumes("application/json")
                 .produces("application/json")
 
