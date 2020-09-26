@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 
 public class CnCheckTrustManager implements X509TrustManager {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger LOGGER = LoggerFactory.getLogger(CnCheckTrustManager.class);
 
     private final Set<String> acceptedCNs;
     private final TrustManager[] trustManagers;
@@ -62,7 +62,7 @@ public class CnCheckTrustManager implements X509TrustManager {
             x509TrustManager.checkServerTrusted(x509Certificates, authType);
             return true;
         } catch (CertificateException e) {
-            logger.warn("");
+            LOGGER.warn("");
             return false;
         }
     }
@@ -89,7 +89,7 @@ public class CnCheckTrustManager implements X509TrustManager {
                     .filter(rdn -> rdn.getType().equalsIgnoreCase("cn"))
                     .map(rdn -> rdn.getValue().toString());
         } catch (Exception e) {
-            logger.warn("Failed to get certificate CN.", e);
+            LOGGER.warn("Failed to get certificate CN.", e);
             return Stream.empty();
         }
     }
