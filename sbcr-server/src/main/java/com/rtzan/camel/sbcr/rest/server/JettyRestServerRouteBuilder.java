@@ -1,5 +1,6 @@
 package com.rtzan.camel.sbcr.rest.server;
 
+import com.rtzan.camel.sbcr.server.model.ServiceReadinessStatus;
 import com.rtzan.camel.sbcr.server.model.ServiceStatus;
 
 import org.apache.camel.builder.RouteBuilder;
@@ -16,7 +17,8 @@ import static com.rtzan.camel.sbcr.rest.common.tls.SslParameters.SSL_CONTEXT_PAR
 @Profile({"!test", "jetty-server"})
 public class JettyRestServerRouteBuilder extends RouteBuilder {
 
-    public static final String ROUTE_ID_STATUS_GET = APP_NAME + ".status";
+    public static final String ROUTE_ID_STATUS_GET = APP_NAME + ".admin.status";
+    public static final String ROUTE_ID_READY_GET = APP_NAME + ".admin.ready";
 
     private final String serverSchema;
     private final String serverAddress;
@@ -57,13 +59,21 @@ public class JettyRestServerRouteBuilder extends RouteBuilder {
                 .componentProperty("matchOnUriPrefix", "true")
         ;
 
-        rest("/").description("REST service")
+        rest("/").description("Service Status")
                 .consumes("application/json")
                 .produces("application/json")
 
                 .get().id(ROUTE_ID_STATUS_GET).description("Server status").outType(ServiceStatus.class)
                 .responseMessage().code(200).message("Server is online").endResponseMessage()
                 .route().setBody(constant(new ServiceStatus("springboot-camel-rest-ssl", applicationVersion, "OK")));
+
+        rest("/ready").description("Service Ready")
+                .consumes("application/json")
+                .produces("application/json")
+
+                .get().id(ROUTE_ID_READY_GET).description("Server status").outType(ServiceStatus.class)
+                .responseMessage().code(200).message("Server is online").endResponseMessage()
+                .route().setBody(constant(new ServiceReadinessStatus("springboot-camel-rest-ssl", applicationVersion, "OK")));
 
         // @formatter:on
     }

@@ -10,9 +10,9 @@ spec:
     matchLabels:
       app: my-k8s-camel-spring
   ports:
-  - name: "8080"
-    port: 8080
-    targetPort: 80
+  - name: "8083"
+    port: 8083
+    targetPort: 443
 
 
 ###############################################################################

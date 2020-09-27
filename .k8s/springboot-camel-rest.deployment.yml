@@ -17,23 +17,24 @@ spec:
       containers:
       - name: my-k8s-camel-spring
         image: artizan.org/spring-camel:1.0
-#       -----------------------------------
-        readinessProbe:
+        #-----------------------------------
+        livenessProbe:
           httpGet:
             path: /
             port: 8083
             scheme: HTTPS
-#       -----------------------------------
-        livenessProbe:
-          httpGet:
-            path: /healthz
-            port: 8080
             httpHeaders:
               - name: Custom-Header
                 value: Awesome
           initialDelaySeconds: 3
           periodSeconds: 3
-#       -----------------------------------
+        #-----------------------------------
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8083
+            scheme: HTTPS
+        #-----------------------------------
         ports:
         - containerPort: 8083
         resources:

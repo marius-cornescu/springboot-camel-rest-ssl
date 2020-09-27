@@ -7,15 +7,22 @@
 # 
 #################################################################
 FROM alpine:3.12
-EXPOSE 8080
+EXPOSE 8083
 
+# UTILITY PKs
+RUN apk add curl
+
+# RUNTIME PKs
 RUN apk add openjdk11-jre-headless
-
+#======================================
 RUN mkdir /jars
-ADD springb-camel-rest/target/*.jar /jars/
+ADD sbcr-server/target/*.jar /jars/
 #
 RUN mkdir /configs
-ADD springb-camel-rest/src/main/resources/PROD-application.properties /configs/application.properties
+ADD sbcr-server/src/main/resources/PROD-application.properties /configs/application.properties
 #
+RUN mkdir /security
+ADD sbcr-server/src/main/resources/ssl/* /security/
+#======================================
 CMD ["java", "-jar", "/jars/springb-camel-rest-1.0-SNAPSHOT.jar", "--spring.config.location=file:///configs/application.properties"]
 #################################################################

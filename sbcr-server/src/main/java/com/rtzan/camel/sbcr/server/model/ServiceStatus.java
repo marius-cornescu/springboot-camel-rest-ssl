@@ -1,66 +1,36 @@
 package com.rtzan.camel.sbcr.server.model;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.jar.Attributes;
-import java.util.jar.Manifest;
-import java.util.stream.Collectors;
 
 public class ServiceStatus {
 
-    private String serviceName;
-    private String version;
-    private String status;
+    private final String serviceName;
+    private final String apiVersion;
+    private final String status;
 
-    private Map<String, String> attributes;
+    private final Map<String, String> attributes;
 
-    public ServiceStatus() {
+    public ServiceStatus(String serviceName, String apiVersion, String status) {
+        this(serviceName, apiVersion, status, ApplicationAttributes.getAttributes());
     }
 
-    public ServiceStatus(String serviceName, String version, String status) {
+    ServiceStatus(String serviceName, String apiVersion, String status, Map<String, String> attributes) {
         this.serviceName = serviceName;
-        this.version = version;
+        this.apiVersion = apiVersion;
         this.status = status;
-        this.attributes = extractAttributes();
-    }
-
-    private static Map<String, String> extractAttributes() {
-        try {
-            Attributes attribs = new Manifest(ServiceStatus.class.getResourceAsStream("/META-INF/MANIFEST.MF")).getMainAttributes();
-
-            return attribs.entrySet()
-                    .stream()
-                    .collect(Collectors.toMap(
-                            e -> e.getKey().toString(),
-                            e -> e.getValue().toString())
-                    );
-        } catch (Exception e) {
-            return new HashMap<>();
-        }
+        this.attributes = attributes;
     }
 
     public String getServiceName() {
         return serviceName;
     }
 
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
-    }
-
-    public String getVersion() {
-        return version;
-    }
-
-    public void setVersion(String version) {
-        this.version = version;
+    public String getApiVersion() {
+        return apiVersion;
     }
 
     public String getStatus() {
         return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public Map<String, String> getAttributes() {
@@ -70,7 +40,7 @@ public class ServiceStatus {
     @Override
     public String toString() {
         return "Status{" +
-                "version='" + version + '\'' +
+                "apiVersion='" + apiVersion + '\'' +
                 ", status='" + status + '\'' +
                 '}';
     }

@@ -66,6 +66,7 @@
                 <filtering>true</filtering>
                 <excludes>
                     <exclude>**/*.properties</exclude>
+                    <exclude>**/*.pkcs12</exclude>
                 </excludes>
             </resource>
         </resources>

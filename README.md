@@ -5,15 +5,15 @@ A restfull jetty server and client with mutual ssl authentication
 `>$ java -jar target/springb-camel-rest-server-1.0-SNAPSHOT.jar`
 
 ## Urls
-http://0.0.0.0:8080/api-doc
-http://0.0.0.0:8080/users
+http://0.0.0.0:8083/api-doc
+http://0.0.0.0:8083/users
 
 
 ### JETTY SERVER
 
 java -jar target/springb-camel-rest-server-1.0-SNAPSHOT.jar -Dspring.profiles.active=jetty-server --spring.config.location=./src/main/resources/jetty-application.properties
 
-java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5005 -jar target/springb-camel-rest-server-1.0-SNAPSHOT.jar -Dspring.profiles.active=jetty-server --spring.config.location=./src/main/resources/jetty-application.properties
+java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5005 -jar target/springb-camel-rest-server-1.0-SNAPSHOT.jar -Dspring.profiles.active=jetty-server --spring.config.location=./src/main/resources/DEV-application.properties
 
 ### NETTY SERVER
 
@@ -22,11 +22,17 @@ java -jar target/springb-camel-rest-server-1.0-SNAPSHOT.jar -Dspring.profiles.ac
 
 
 ## Build docker image
-`docker build --rm -t artizan.org/spring-camel:1.0 .`
+`docker build -f .\.docker\dockerfile --rm -t artizan.org/spring-camel:1.0 .`
 
 `docker build --rm --build-arg http_proxy=$http_proxy -t artizan.org/spring-camel:1.0 .`
 
-`docker run -it artizan.org/spring-camel:1.0 sh`
+`docker run --name sbr-ssl -p 18081:8081 -p 18083:8083 -it artizan.org/spring-camel:1.0 sh`
+
+----------------------------------------------
+Publish or expose port (-p, --expose)
+$ docker run -p 127.0.0.1:80:8080/tcp ubuntu bash
+This binds port 8080 of the container to TCP port 80 on 127.0.0.1 of the host machine. You can also specify udp and sctp ports.
+----------------------------------------------
 
 ## Deploy in k8s cluster
 1. Run `kubectl create -f k8s-camel-spring.deployment.yml`
