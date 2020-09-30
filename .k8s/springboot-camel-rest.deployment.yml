@@ -19,21 +19,32 @@ spec:
         image: artizan.org/spring-camel:1.0
         #-----------------------------------
         livenessProbe:
-          httpGet:
-            path: /
-            port: 8083
-            scheme: HTTPS
-            httpHeaders:
-              - name: Custom-Header
-                value: Awesome
+          exec:
+            command:
+              - wget
+              - --quiet
+              - --no-check-certificate
+              - --certificate=/security/certs/sbcr.as.crt
+              - --private-key=/security/certs/sbcr.as.key
+              - --method GET
+              - --timeout=0
+              - 'https://127.0.0.1:8083/'
           initialDelaySeconds: 3
           periodSeconds: 3
         #-----------------------------------
         readinessProbe:
-          httpGet:
-            path: /
-            port: 8083
-            scheme: HTTPS
+          exec:
+            command:
+              - wget
+              - --quiet
+              - --no-check-certificate
+              - --certificate=/security/certs/sbcr.as.crt
+              - --private-key=/security/certs/sbcr.as.key
+              - --method GET
+              - --timeout=0
+              - 'https://127.0.0.1:8083/ready/'
+          initialDelaySeconds: 3
+          periodSeconds: 3
         #-----------------------------------
         ports:
         - containerPort: 8083

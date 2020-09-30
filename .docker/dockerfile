@@ -11,6 +11,7 @@ EXPOSE 8083
 
 # UTILITY PKs
 RUN apk add curl
+RUN apk add wget
 
 # RUNTIME PKs
 RUN apk add openjdk11-jre-headless
@@ -22,7 +23,14 @@ RUN mkdir /configs
 ADD sbcr-server/src/main/resources/PROD-application.properties /configs/application.properties
 #
 RUN mkdir /security
-ADD sbcr-server/src/main/resources/ssl/* /security/
+#
+RUN mkdir /security/ssl
+ADD sbcr-server/src/main/resources/ssl/* /security/ssl/
+#
+RUN mkdir /security/certs
+ADD sbcr-server/src/main/resources/certs/java-project.as.crt /security/certs/sbcr.as.crt
+ADD sbcr-server/src/main/resources/certs/java-project.as.key /security/certs/sbcr.as.key
+#
 #======================================
-CMD ["java", "-jar", "/jars/springb-camel-rest-1.0-SNAPSHOT.jar", "--spring.config.location=file:///configs/application.properties"]
+CMD ["java", "-jar", "/jars/springb-camel-rest-server-1.0-SNAPSHOT.jar", "--spring.config.location=file:///configs/application.properties"]
 #################################################################

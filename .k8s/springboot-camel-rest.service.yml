@@ -11,8 +11,8 @@ spec:
       app: my-k8s-camel-spring
   ports:
   - name: "8083"
-    port: 8083
-    targetPort: 443
+    port: 443
+    targetPort: 8083
 
 
 ###############################################################################
