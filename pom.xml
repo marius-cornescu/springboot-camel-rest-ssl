@@ -5,11 +5,11 @@
 
     <groupId>com.rtzan.camel.sbcr</groupId>
     <artifactId>springb-camel-rest</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>springb-camel-rest</name>
-    <description>Spring Boot &gt; Camel &gt; Jetty Server and Client with SSL</description>
+    <description>Spring Boot > Camel > Jetty Server and Client with SSL</description>
 
     <scm>
         <developerConnection>
@@ -48,18 +48,10 @@
     </properties>
 
     <modules>
-        <module>common</module>
+    	<module>common</module>
         <module>sbcr-server</module>
         <module>sbcr-client</module>
     </modules>
-
-    <distributionManagement>
-        <repository>
-            <id>internal.repo</id>
-            <name>Internal repo</name>
-            <url>file:///_Projects/_nexus_</url>
-        </repository>
-    </distributionManagement>
 
     <dependencyManagement>
         <dependencies>
