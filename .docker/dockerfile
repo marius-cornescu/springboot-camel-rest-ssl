@@ -21,6 +21,7 @@ ADD sbcr-server/target/*.jar /jars/
 #
 RUN mkdir /configs
 ADD sbcr-server/src/main/resources/PROD-application.properties /configs/application.properties
+ADD sbcr-server/src/main/resources/log4j2.xml /configs/log4j2.xml
 #
 RUN mkdir /security
 #
@@ -32,5 +33,5 @@ ADD sbcr-server/src/main/resources/certs/java-project.as.crt /security/certs/sbc
 ADD sbcr-server/src/main/resources/certs/java-project.as.key /security/certs/sbcr.as.key
 #
 #======================================
-CMD ["java", "-jar", "/jars/springb-camel-rest-server-1.0-SNAPSHOT.jar", "--spring.config.location=file:///configs/application.properties"]
+CMD ["java", "-jar", "/jars/springb-camel-rest-server-1.0-SNAPSHOT.jar", "-Dspring.profiles.active=jetty-server", "--spring.config.location=file:///configs/application.properties"]
 #################################################################

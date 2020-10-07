@@ -1,24 +1,17 @@
 package com.rtzan.camel.sbcr.server.model;
 
-import java.util.Map;
-
-public class ServiceStatus {
+public abstract class ServiceStatus {
 
     private final String serviceName;
     private final String apiVersion;
     private final String status;
+    private final String apiMode;
 
-    private final Map<String, String> attributes;
-
-    public ServiceStatus(String serviceName, String apiVersion, String status) {
-        this(serviceName, apiVersion, status, ApplicationAttributes.getAttributes());
-    }
-
-    ServiceStatus(String serviceName, String apiVersion, String status, Map<String, String> attributes) {
+    ServiceStatus(String serviceName, String apiVersion, String apiMode, String status) {
         this.serviceName = serviceName;
         this.apiVersion = apiVersion;
+        this.apiMode = apiMode;
         this.status = status;
-        this.attributes = attributes;
     }
 
     public String getServiceName() {
@@ -29,18 +22,19 @@ public class ServiceStatus {
         return apiVersion;
     }
 
-    public String getStatus() {
-        return status;
+    public String getApiMode() {
+        return apiMode;
     }
 
-    public Map<String, String> getAttributes() {
-        return attributes;
+    public String getStatus() {
+        return status;
     }
 
     @Override
     public String toString() {
         return "Status{" +
                 "apiVersion='" + apiVersion + '\'' +
+                ", apiMode='" + apiMode + '\'' +
                 ", status='" + status + '\'' +
                 '}';
     }

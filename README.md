@@ -11,7 +11,7 @@ http://0.0.0.0:8083/users
 
 ### JETTY SERVER
 
-java -jar target/springb-camel-rest-server-1.0-SNAPSHOT.jar -Dspring.profiles.active=jetty-server --spring.config.location=./src/main/resources/jetty-application.properties
+java -jar target/springb-camel-rest-server-1.0-SNAPSHOT.jar --spring.config.location=./src/main/resources/DEV-application.properties
 
 #### DEBUG
 java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5005 -jar target/springb-camel-rest-server-1.0-SNAPSHOT.jar -Dspring.profiles.active=jetty-server --spring.config.location=./src/main/resources/DEV-application.properties
@@ -39,8 +39,16 @@ java -jar target/springb-camel-rest-server-1.0-SNAPSHOT.jar -Dspring.profiles.ac
 
 docker build -f .\.docker\dockerfile --rm -t artizan.org/spring-camel:1.0 .
 
+docker container stop sbr-ssl
 docker container rm sbr-ssl
+
+docker run -d -p 18081:8081 -p 18083:8083 --name sbr-ssl artizan.org/spring-camel:1.0
+
+---
 docker run --name sbr-ssl -p 18081:8081 -p 18083:8083 -it artizan.org/spring-camel:1.0 sh
+---
+
+docker container stop sbr-ssl
 
 ----------------------------------------------
 `docker build --rm --build-arg http_proxy=$http_proxy -t artizan.org/spring-camel:1.0 .`
@@ -51,7 +59,7 @@ This binds port 8080 of the container to TCP port 80 on 127.0.0.1 of the host ma
 ----------------------------------------------
 
 ## Deploy in k8s cluster
-1. Run `kubectl create -f k8s-camel-spring.deployment.yml`
+1. Run `kubectl apply -f .k8s/springboot-camel-rest.deployment.yml`
 2. Run `kubectl get pods` to see the pod.
 3. Run `k exec [k8s-camel-spring] -it sh` to shell into the container. Type `exit` to exit the shell.
 

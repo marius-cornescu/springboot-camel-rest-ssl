@@ -15,43 +15,50 @@ spec:
         app: my-k8s-camel-spring
     spec:
       containers:
-      - name: my-k8s-camel-spring
-        image: artizan.org/spring-camel:1.0
-        #-----------------------------------
-        livenessProbe:
-          exec:
-            command:
-              - wget
-              - --quiet
-              - --no-check-certificate
-              - --certificate=/security/certs/sbcr.as.crt
-              - --private-key=/security/certs/sbcr.as.key
-              - --method GET
-              - --timeout=0
-              - 'https://127.0.0.1:8083/'
-          initialDelaySeconds: 3
-          periodSeconds: 3
-        #-----------------------------------
-        readinessProbe:
-          exec:
-            command:
-              - wget
-              - --quiet
-              - --no-check-certificate
-              - --certificate=/security/certs/sbcr.as.crt
-              - --private-key=/security/certs/sbcr.as.key
-              - --method GET
-              - --timeout=0
-              - 'https://127.0.0.1:8083/ready/'
-          initialDelaySeconds: 3
-          periodSeconds: 3
-        #-----------------------------------
-        ports:
-        - containerPort: 8083
-        resources:
-          limits:
-            memory: "128Mi" #128 MB
-            cpu: "100m" #100 millicpu (.1 cpu or 10% of the cpu)
+        - name: my-k8s-camel-spring
+          image: artizan.org/spring-camel:1.0
+          #-----------------------------------
+          livenessProbe:
+            exec:
+              command:
+                - wget
+                - --quiet
+                - --no-check-certificate
+                - --certificate=/security/certs/sbcr.as.crt
+                - --private-key=/security/certs/sbcr.as.key
+                - --timeout=0
+                - 'https://127.0.0.1:8083/'
+            initialDelaySeconds: 20
+            periodSeconds: 5
+          #-----------------------------------
+          readinessProbe:
+            exec:
+              command:
+                - wget
+                - --quiet
+                - --no-check-certificate
+                - --certificate=/security/certs/sbcr.as.crt
+                - --private-key=/security/certs/sbcr.as.key
+                - --timeout=0
+                - 'https://127.0.0.1:8083/ready/'
+            initialDelaySeconds: 20
+            periodSeconds: 5
+          #-----------------------------------
+          ports:
+            - containerPort: 8083
+          resources:
+            limits:
+              memory: "256Mi" #128 MB
+              cpu: "500m" # millicpu (.5 cpu or 50% of the cpu)
+          #-----------------------------------
+      #        volumeMounts:
+      #          - name: blobdisk01
+      #            mountPath: /mnt/blobdisk
+      ###############################################################################
+#      volumes:
+#        - name: blobdisk01
+#          persistentVolumeClaim:
+#            claimName: pv-logs-rw-5g
 
 
 ###############################################################################

@@ -1,18 +1,16 @@
 apiVersion: v1
 
 ###############################################################################
-kind: Service
+kind: PersistentVolumeClaim
 metadata:
-  name: my-k8s-camel-spring-lb
-spec:
-  type: LoadBalancer
-  selector:
+  name: pv-logs-rw-5g
+  labels:
     app: my-k8s-camel-spring
-  ports:
-    - name: "8083"
-      port: 18083
-      targetPort: 8083
-
-
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
 ###############################################################################
 ###############################################################################
