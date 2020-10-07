@@ -4,7 +4,7 @@
 
     <groupId>com.rtzan.camel.sbcr</groupId>
     <artifactId>springb-camel-rest</artifactId>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>springb-camel-rest</name>
@@ -14,7 +14,7 @@
         <developerConnection>
             scm:git:git@github.com:marius-cornescu/springboot-camel-rest-ssl.git
         </developerConnection>
-        <tag>springb-camel-rest-1.0</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <properties>
