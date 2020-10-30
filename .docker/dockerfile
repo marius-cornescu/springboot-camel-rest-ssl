@@ -17,7 +17,7 @@ RUN apk add wget
 RUN apk add openjdk11-jre-headless
 #======================================
 RUN mkdir /jars
-ADD sbcr-server/target/*.jar /jars/
+ADD sbcr-server/target/springb-camel-rest-server-*.jar /jars/
 #
 RUN mkdir /configs
 ADD sbcr-server/src/main/resources/PROD-application.properties /configs/application.properties
@@ -33,5 +33,5 @@ ADD sbcr-server/src/main/resources/certs/java-project.as.crt /security/certs/sbc
 ADD sbcr-server/src/main/resources/certs/java-project.as.key /security/certs/sbcr.as.key
 #
 #======================================
-CMD ["java", "-jar", "/jars/springb-camel-rest-server-1.0-SNAPSHOT.jar", "-Dspring.profiles.active=jetty-server", "--spring.config.location=file:///configs/application.properties"]
+CMD ["java", "-jar", "/jars/springb-camel-rest-server-*.jar", "-Dspring.profiles.active=jetty-server", "--spring.config.location=file:///configs/application.properties"]
 #################################################################

@@ -46,6 +46,8 @@ docker run -d -p 18081:8081 -p 18083:8083 --name sbr-ssl artizan.org/spring-came
 
 ---
 docker run --name sbr-ssl -p 18081:8081 -p 18083:8083 -it artizan.org/spring-camel:1.0 sh
+
+java -jar /jars/springb-camel-rest-server-*.jar --spring.config.location=file:///configs/application.properties
 ---
 
 docker container stop sbr-ssl

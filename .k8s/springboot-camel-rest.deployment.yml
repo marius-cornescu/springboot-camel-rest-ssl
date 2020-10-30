@@ -1,7 +1,7 @@
-apiVersion: apps/v1
-
 ###############################################################################
+apiVersion: apps/v1
 kind: Deployment
+###############################################################################
 metadata:
   name: my-k8s-camel-spring
 spec:
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: my-k8s-camel-spring
-          image: artizan.org/spring-camel:1.0
+          image: artizan.org/spring-camel:1.1
           #-----------------------------------
           livenessProbe:
             exec:
@@ -59,7 +59,5 @@ spec:
 #        - name: blobdisk01
 #          persistentVolumeClaim:
 #            claimName: pv-logs-rw-5g
-
-
 ###############################################################################
 ###############################################################################
